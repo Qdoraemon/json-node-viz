@@ -75,7 +75,7 @@ const StyledDottedContainer = styled.div`
 
 export const Section2 = () => {
   return (
-    <Container size="xl" py="80">
+    <Container size="xl" py="96">
       <Flex justify="center" gap="80" align="center">
         <Stack maw={634}>
           <Title
@@ -89,11 +89,11 @@ export const Section2 = () => {
             order={2}
             c="gray.9"
           >
-            Don&apos;t waste time with JSON formatters
+            Keep formatting and validation in the same flow
           </Title>
           <Text my="md" c="gray.7" fz={16} maw={510}>
-            Format JSON and transform into a readable graph in seconds. JSON Crack is an open-source
-            online tool that helps you visualize and understand data.
+            Format JSON and transform it into a readable graph in seconds. JsonViz keeps the editor
+            and graph view tightly connected.
           </Text>
           <List
             fz={{
@@ -106,20 +106,21 @@ export const Section2 = () => {
             icon={<LuBadgeCheck size="20" />}
           >
             <SimpleGrid w="fit-content" cols={2}>
-              <List.Item>VS Code Extension</List.Item>
+              <List.Item>Browser-first editor</List.Item>
               <List.Item>Open-source</List.Item>
               <List.Item>JSON Validator/Formatter</List.Item>
-              <List.Item>Export Image</List.Item>
+              <List.Item>Visual export</List.Item>
             </SimpleGrid>
           </List>
           <Button
             component="a"
             href="/editor"
-            color="#202842"
+            color="cyan"
             size="lg"
             radius="md"
             w="fit-content"
             mt="sm"
+            variant="filled"
           >
             Open JSON Editor
           </Button>

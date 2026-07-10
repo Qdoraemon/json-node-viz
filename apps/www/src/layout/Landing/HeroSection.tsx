@@ -12,6 +12,11 @@ const oxygen = Oxygen({
 
 const StyledHeroSection = styled.main`
   position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 12%, rgba(56, 189, 248, 0.18), transparent 24%),
+    radial-gradient(circle at 85% 20%, rgba(20, 184, 166, 0.16), transparent 22%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 250, 255, 0.96));
 
   &:before {
     position: absolute;
@@ -20,8 +25,8 @@ const StyledHeroSection = styled.main`
     height: 100%;
     background-size: 40px 40px;
     background-image:
-      linear-gradient(to right, #f7f7f7 1px, transparent 1px),
-      linear-gradient(to bottom, #f7f7f7 1px, transparent 1px);
+      linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
     image-rendering: pixelated;
     -webkit-mask-image: linear-gradient(to bottom, transparent, 0%, white, 98%, transparent);
     mask-image: linear-gradient(to bottom, transparent, 0%, white, 98%, transparent);
@@ -38,11 +43,11 @@ const StyledHeroSectionBody = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding: 6rem 10% 4rem;
+  padding: 5.5rem 10% 4.5rem;
   overflow: hidden;
   text-align: center;
   gap: 60px;
-  min-height: 40vh;
+  min-height: 52vh;
 
   @media only screen and (max-width: 768px) {
     padding: 6em 16px;
@@ -50,12 +55,26 @@ const StyledHeroSectionBody = styled.div`
   }
 `;
 
+const StyledBadge = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: #155e75;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+`;
+
 const StyledHeroTitle = styled.h1`
   position: relative;
-  font-size: 2.3rem;
-  font-weight: 700;
+  font-size: 2.45rem;
+  font-weight: 800;
   display: inline;
-  color: #120f43;
+  color: #0f172a;
   width: fit-content;
   line-height: 1.15;
   max-width: 30rem;
@@ -86,8 +105,8 @@ const StyledHeroText = styled.h2`
   text-align: center;
 
   strong {
-    font-weight: 400;
-    color: #115fe6;
+    font-weight: 700;
+    color: #0284c7;
   }
 
   @media only screen and (min-width: 576px) {
@@ -106,14 +125,16 @@ export const HeroSection = ({ stars = 0 }) => {
     <StyledHeroSection>
       <StyledHeroSectionBody>
         <Stack flex="1" miw={250} mx="auto" align="center">
-          <Link href="https://github.com/AykutSarac/jsoncrack.com" target="_blank" rel="noopener">
+          <StyledBadge>Structured data editor for JSON, YAML, CSV, and XML</StyledBadge>
+          <Link href="https://github.com/jsonviz-dev/jsonviz" target="_blank" rel="noopener">
             <Button
-              variant="default"
+              variant="light"
+              color="cyan"
               radius="xl"
               ta="left"
               leftSection={<FaGithub size="18" />}
               rightSection={
-                <Flex ml="sm" c="dimmed" align="center" gap="4">
+                <Flex ml="sm" c="cyan.8" align="center" gap="4">
                   <FaStar />
                   {stars.toLocaleString("en-US")}
                 </Flex>
@@ -123,19 +144,20 @@ export const HeroSection = ({ stars = 0 }) => {
             </Button>
           </Link>
 
-          <StyledHeroTitle>Visualize JSON into interactive graphs</StyledHeroTitle>
+          <StyledHeroTitle>Turn raw JSON into a clean visual workspace</StyledHeroTitle>
           <StyledHeroText>
-            The best online JSON viewer to <strong>visualize</strong>, <strong>format</strong> and{" "}
-            <strong>explore</strong>.
+            A bright, browser-based editor to <strong>visualize</strong>, <strong>format</strong>, and{" "}
+            <strong>explore</strong> structured data with less friction.
           </StyledHeroText>
 
           <Flex gap="xs" wrap="wrap" justify="center" hiddenFrom="xs">
             <Button
               component="a"
-              color="#202842"
+              color="cyan"
               href="/editor"
               size="md"
               radius="md"
+              variant="filled"
               rightSection={<FaChevronRight />}
               fw="500"
               mt="sm"
@@ -146,10 +168,11 @@ export const HeroSection = ({ stars = 0 }) => {
           <Flex gap="lg" wrap="wrap" justify="center" visibleFrom="xs">
             <Button
               component="a"
-              color="#202842"
+              color="cyan"
               href="/editor"
               size="xl"
               radius="md"
+              variant="filled"
               rightSection={<FaChevronRight />}
               mt="sm"
             >

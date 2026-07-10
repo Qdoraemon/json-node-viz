@@ -1,7 +1,7 @@
 {
-  "name": "JSON Crack",
-  "short_name": "JSON Crack",
-  "description": "JSON Crack Editor is a tool for visualizing into graphs, analyzing, editing, formatting, querying, transforming and validating JSON, CSV, YAML, XML, and more.",
+  "name": "JsonViz",
+  "short_name": "JsonViz",
+  "description": "JsonViz is a browser-based tool for visualizing, editing, validating, converting, and exporting structured data.",
   "theme_color": "#36393e",
   "background_color": "#36393e",
   "display": "standalone",
@@ -14,7 +14,6 @@
       "sizes": "192x192",
       "type": "image/png"
     },
-
     {
       "src": "assets/512.png",
       "sizes": "512x512",

@@ -125,10 +125,10 @@ const EditorPage = () => {
       <Head>
         {generateNextSeo({
           ...SEO,
-          title: "Editor | JSON Crack",
+          title: "Editor | JsonViz",
           description:
-            "JSON Crack Editor is a tool for visualizing into graphs, analyzing, editing, formatting, querying, transforming and validating JSON, CSV, YAML, XML, and more.",
-          canonical: "https://jsoncrack.com/editor",
+            "JsonViz Editor is a browser tool for visualizing, editing, formatting, validating, transforming, and exporting structured data.",
+          canonical: "https://jsonviz.dev/editor",
         })}
       </Head>
       <ThemeProvider theme={darkmodeEnabled ? darkTheme : lightTheme}>

@@ -2,7 +2,6 @@ import React from "react";
 import Link from "next/link";
 import { Button } from "@mantine/core";
 import styled from "styled-components";
-import { FaChrome } from "react-icons/fa";
 import { VscVscode } from "react-icons/vsc";
 import { JSONCrackLogo } from "../JSONCrackBrandLogo";
 
@@ -19,7 +18,8 @@ const StyledNavbar = styled.nav`
   max-width: 1200px;
   margin: 0 auto;
   padding: 16px 24px;
-  background: white;
+  background: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 
@@ -64,8 +64,8 @@ export const Navbar = () => {
             component="a"
             href="https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode"
             target="_blank"
-            variant="subtle"
-            color="black"
+            variant="light"
+            color="cyan"
             size="md"
             radius="md"
             rel="noopener"
@@ -75,57 +75,37 @@ export const Navbar = () => {
           </Button>
           <Button
             component="a"
-            href="https://chromewebstore.google.com/detail/json-crack/hbaeglefdflnhodchjiaphmheaojikhh"
+            href="/docs"
             target="_blank"
             variant="subtle"
-            color="black"
+            color="cyan"
             size="md"
             radius="md"
             rel="noopener"
-            leftSection={<FaChrome size={16} />}
+            leftSection={<VscVscode size={16} />}
           >
-            Chrome
+            Docs
           </Button>
           <Button
             component={Link}
             prefetch={false}
             href="/docs"
             variant="subtle"
-            color="black"
+            color="cyan"
             size="md"
             radius="md"
           >
             Embed
           </Button>
-          <Button
-            component="a"
-            href="https://github.com/AykutSarac/jsoncrack.com"
-            target="_blank"
-            variant="subtle"
-            color="black"
-            size="md"
-            radius="md"
-            rel="noopener"
-          >
-            Open Source
+          <Button component="a" href="/legal/privacy" variant="subtle" color="cyan" size="md" radius="md" rel="noopener">
+            Privacy
           </Button>
         </Center>
         <Right>
           <Button
-            component="a"
-            href="https://todiagram.com?utm_source=jsoncrack&utm_medium=navbar"
-            variant="subtle"
-            color="black"
-            size="md"
-            radius="md"
-            rel="noopener"
-          >
-            Upgrade
-          </Button>
-          <Button
             radius="md"
             component="a"
-            color="#202842"
+            color="cyan"
             href="/editor"
             visibleFrom="sm"
             size="md"

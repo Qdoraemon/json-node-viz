@@ -1,8 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Anchor, Container, Divider, Flex, Stack, Text, ThemeIcon } from "@mantine/core";
-import { FaDiscord, FaGithub, FaLinkedin } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaGithub } from "react-icons/fa";
 import { JSONCrackLogo } from "../JSONCrackBrandLogo";
 
 export const Footer = () => {
@@ -12,8 +11,8 @@ export const Footer = () => {
       <Flex justify="space-between">
         <Stack gap={4} visibleFrom="sm">
           <JSONCrackLogo />
-          <Anchor href="mailto:contact@todiagram.com" fz="xs" c="dimmed">
-            contact@todiagram.com
+          <Anchor href="mailto:hello@jsonviz.dev" fz="xs" c="dimmed">
+            hello@jsonviz.dev
           </Anchor>
         </Stack>
         <Flex gap={60} visibleFrom="sm">
@@ -21,30 +20,14 @@ export const Footer = () => {
             <Text fz="sm" c="white">
               Product
             </Text>
-            <Anchor
-              fz="sm"
-              c="gray.5"
-              href="https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode"
-              rel="noopener"
-            >
-              VS Code
+            <Anchor component={Link} prefetch={false} fz="sm" c="gray.5" href="/editor">
+              Editor
             </Anchor>
-            <Anchor
-              href="https://github.com/AykutSarac/jsoncrack.com"
-              fz="sm"
-              c="gray.5"
-              target="_blank"
-              rel="noopener"
-            >
-              Open Source
+            <Anchor component={Link} prefetch={false} fz="sm" c="gray.5" href="/docs">
+              Docs
             </Anchor>
-            <Anchor
-              href="https://todiagram.com?utm_source=jsoncrack&utm_medium=footer"
-              fz="sm"
-              c="gray.5"
-              rel="noopener"
-            >
-              ToDiagram
+            <Anchor component={Link} prefetch={false} fz="sm" c="gray.5" href="/legal/privacy">
+              Privacy
             </Anchor>
           </Stack>
           <Stack gap="xs">
@@ -63,39 +46,9 @@ export const Footer = () => {
               Social
             </Text>
             <Flex gap="xs">
-              <Anchor
-                aria-label="LinkedIn"
-                href="https://www.linkedin.com/company/jsoncrack"
-                fz="sm"
-                rel="noopener"
-              >
-                <ThemeIcon variant="transparent" color="gray.5">
-                  <FaLinkedin size={20} />
-                </ThemeIcon>
-              </Anchor>
-              <Anchor aria-label="X" fz="sm" href="https://x.com/jsoncrack" rel="noopener">
-                <ThemeIcon variant="transparent" color="gray.5">
-                  <FaXTwitter size={20} />
-                </ThemeIcon>
-              </Anchor>
-              <Anchor
-                aria-label="GitHub"
-                href="https://github.com/AykutSarac/jsoncrack.com"
-                fz="sm"
-                rel="noopener"
-              >
+              <Anchor aria-label="GitHub" href="https://github.com" fz="sm" rel="noopener">
                 <ThemeIcon variant="transparent" color="gray.5">
                   <FaGithub size={20} />
-                </ThemeIcon>
-              </Anchor>
-              <Anchor
-                aria-label="Discord"
-                fz="sm"
-                href="https://discord.com/invite/yVyTtCRueq"
-                rel="noopener"
-              >
-                <ThemeIcon variant="transparent" color="gray.5">
-                  <FaDiscord size={20} />
                 </ThemeIcon>
               </Anchor>
             </Flex>
@@ -104,7 +57,7 @@ export const Footer = () => {
       </Flex>
       <Flex gap="xl">
         <Text fz="sm" c="dimmed">
-          © {new Date().getFullYear()} JSON Crack
+          © {new Date().getFullYear()} JsonViz. Built on open-source foundations.
         </Text>
         <Anchor component={Link} prefetch={false} fz="sm" c="dimmed" href="/legal/terms">
           <Text fz="sm" c="dimmed">

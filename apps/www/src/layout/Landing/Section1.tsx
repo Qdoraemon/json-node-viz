@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Image, SimpleGrid, Stack, Text, Title } from "@mantine/core";
+import { Badge, Container, Image, SimpleGrid, Stack, Text, Title } from "@mantine/core";
 import styled from "styled-components";
 
 const StyledImageWrapper = styled.div`
@@ -42,7 +42,20 @@ const StyledImageWrapper = styled.div`
 
 export const Section1 = () => {
   return (
-    <Container size="xl" py="80">
+    <Container size="xl" py="96">
+      <Badge
+        fw="700"
+        tt="none"
+        variant="light"
+        color="cyan"
+        radius="xl"
+        mb="md"
+        mx="auto"
+        display="block"
+        w="fit-content"
+      >
+        Why JsonViz
+      </Badge>
       <Title
         lh="1.1"
         fz={{
@@ -57,7 +70,7 @@ export const Section1 = () => {
         mx="auto"
         mb="15"
       >
-        Make working with JSON easy
+        Make working with structured data feel effortless
       </Title>
       <Title
         order={3}
@@ -70,8 +83,8 @@ export const Section1 = () => {
         fz={{ base: 16, sm: 18 }}
         w={{ base: "100%", md: "600" }}
       >
-        JSON Crack eliminates the chaos of raw, messy data, making the complex appear simple and
-        easy to understand.
+        JsonViz keeps the interface light, readable, and focused so complex data becomes easier to
+        inspect.
       </Title>
       <SimpleGrid
         cols={{
@@ -85,14 +98,16 @@ export const Section1 = () => {
           maw="360"
           mx="auto"
           style={{
-            borderRadius: "17px",
-            border: "1px solid #e0e0e0",
+            borderRadius: "20px",
+            border: "1px solid rgba(15, 23, 42, 0.08)",
+            background: "rgba(255, 255, 255, 0.9)",
+            boxShadow: "0 16px 40px rgba(15, 23, 42, 0.05)",
           }}
         >
           <StyledImageWrapper>
             <Image src="/assets/step1-visual.png" pos="relative" w="100%" alt="upload" />
           </StyledImageWrapper>
-          <Title ta="center" c="black" order={3}>
+          <Title ta="center" c="gray.9" order={3}>
             Upload your data
           </Title>
           <Text ta="center" c="gray.7">
@@ -105,14 +120,16 @@ export const Section1 = () => {
           maw="360"
           mx="auto"
           style={{
-            borderRadius: "17px",
-            border: "1px solid #e0e0e0",
+            borderRadius: "20px",
+            border: "1px solid rgba(15, 23, 42, 0.08)",
+            background: "rgba(255, 255, 255, 0.9)",
+            boxShadow: "0 16px 40px rgba(15, 23, 42, 0.05)",
           }}
         >
           <StyledImageWrapper>
             <Image src="/assets/step2-visual.png" pos="relative" w="100%" alt="visualize" />
           </StyledImageWrapper>
-          <Title ta="center" c="black" order={3}>
+          <Title ta="center" c="gray.9" order={3}>
             Visualize your JSON
           </Title>
           <Text ta="center" c="gray.7">
@@ -126,14 +143,16 @@ export const Section1 = () => {
           maw="360"
           mx="auto"
           style={{
-            borderRadius: "17px",
-            border: "1px solid #e0e0e0",
+            borderRadius: "20px",
+            border: "1px solid rgba(15, 23, 42, 0.08)",
+            background: "rgba(255, 255, 255, 0.9)",
+            boxShadow: "0 16px 40px rgba(15, 23, 42, 0.05)",
           }}
         >
           <StyledImageWrapper>
             <Image src="/assets/step3-visual.png" pos="relative" w="100%" alt="export image" />
           </StyledImageWrapper>
-          <Title ta="center" c="black" order={3}>
+          <Title ta="center" c="gray.9" order={3}>
             Export to image
           </Title>
           <Text ta="center" c="gray.7">
