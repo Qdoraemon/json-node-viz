@@ -16,11 +16,20 @@ const StyledBottomBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 4px 6px;
-  border-bottom: 1px solid ${({ theme }) => theme.BACKGROUND_MODIFIER_ACCENT};
-  background: ${({ theme }) => theme.TOOLBAR_BG};
+  padding: 5px 8px;
+  border-bottom: 1px solid
+    ${({ theme }) =>
+      theme.BACKGROUND_SECONDARY === "#f2f3f5"
+        ? "rgba(15, 23, 42, 0.08)"
+        : theme.BACKGROUND_MODIFIER_ACCENT};
+  background: ${({ theme }) =>
+    theme.BACKGROUND_SECONDARY === "#f2f3f5" ? "rgba(255, 255, 255, 0.78)" : theme.TOOLBAR_BG};
   z-index: 2;
   flex-shrink: 0;
+  backdrop-filter: ${({ theme }) =>
+    theme.BACKGROUND_SECONDARY === "#f2f3f5" ? "blur(10px)" : "none"};
+  -webkit-backdrop-filter: ${({ theme }) =>
+    theme.BACKGROUND_SECONDARY === "#f2f3f5" ? "blur(10px)" : "none"};
 
   @media screen and (max-width: 320px) {
     display: none;
@@ -53,11 +62,12 @@ const StyledBottomBarItem = styled.button<{ $bg?: string }>`
   height: 26px;
   padding: 2px 8px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   color: ${({ theme }) => theme.INTERACTIVE_NORMAL};
   background: ${({ $bg }) => $bg || "transparent"};
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  border: 1px solid transparent;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -69,8 +79,10 @@ const StyledBottomBarItem = styled.button<{ $bg?: string }>`
   &:hover:not(&:disabled) {
     background-color: ${({ theme }) =>
       theme.BACKGROUND_SECONDARY === "#f2f3f5"
-        ? "rgba(0, 0, 0, 0.05)"
+        ? "rgba(2, 132, 199, 0.1)"
         : "rgba(255, 255, 255, 0.05)"};
+    border-color: ${({ theme }) =>
+      theme.BACKGROUND_SECONDARY === "#f2f3f5" ? "rgba(2, 132, 199, 0.22)" : "transparent"};
     color: ${({ theme }) => theme.INTERACTIVE_HOVER};
   }
 

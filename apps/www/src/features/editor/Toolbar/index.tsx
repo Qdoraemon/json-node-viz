@@ -18,12 +18,21 @@ const StyledTools = styled.div`
   align-items: center;
   gap: 4px;
   justify-content: space-between;
-  height: 45px;
-  padding: 6px 12px;
-  background: ${({ theme }) => theme.TOOLBAR_BG};
+  height: 52px;
+  padding: 8px 12px;
+  background: ${({ theme }) =>
+    theme.BACKGROUND_SECONDARY === "#f2f3f5"
+      ? "rgba(255, 255, 255, 0.76)"
+      : theme.TOOLBAR_BG};
   color: ${({ theme }) => theme.SILVER};
   z-index: 36;
-  border-bottom: 1px solid ${({ theme }) => theme.SILVER_DARK};
+  border-bottom: 1px solid
+    ${({ theme }) =>
+      theme.BACKGROUND_SECONDARY === "#f2f3f5" ? "rgba(15, 23, 42, 0.08)" : theme.SILVER_DARK};
+  backdrop-filter: ${({ theme }) =>
+    theme.BACKGROUND_SECONDARY === "#f2f3f5" ? "blur(12px)" : "none"};
+  -webkit-backdrop-filter: ${({ theme }) =>
+    theme.BACKGROUND_SECONDARY === "#f2f3f5" ? "blur(12px)" : "none"};
 
   @media only screen and (max-width: 320px) {
     display: none;

@@ -8,7 +8,10 @@ import { TreeView } from "./views/TreeView";
 const StyledLiveEditor = styled.div`
   position: relative;
   height: 100%;
-  background: ${({ theme }) => theme.GRID_BG_COLOR};
+  background: ${({ theme }) =>
+    theme.BACKGROUND_SECONDARY === "#f2f3f5"
+      ? "linear-gradient(180deg, #f8fcff 0%, #f3f8ff 100%)"
+      : theme.GRID_BG_COLOR};
   overflow: auto;
 
   & > ul {

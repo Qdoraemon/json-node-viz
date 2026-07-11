@@ -78,8 +78,9 @@ const StyledOpenEditorButton = styled.button<{ $dark?: boolean }>`
   padding: 0;
   border: none;
   border-radius: 0 8px 8px 0;
-  background: ${({ $dark }) => ($dark ? "#e8e8e8" : "#1c1c1e")};
-  color: ${({ $dark }) => ($dark ? "#1c1c1e" : "#ffffff")};
+  background: ${({ $dark }) => ($dark ? "rgba(255, 255, 255, 0.82)" : "#1c1c1e")};
+  color: ${({ $dark }) => ($dark ? "#0f172a" : "#ffffff")};
+  border: ${({ $dark }) => ($dark ? "1px solid rgba(15, 23, 42, 0.12)" : "none")};
   cursor: pointer;
   transition:
     background-color 150ms ease,
