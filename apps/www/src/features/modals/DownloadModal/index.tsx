@@ -63,6 +63,7 @@ function downloadURI(uri: string, name: string) {
 }
 
 const getExportElement = () =>
+  (document.querySelector("[data-export='graph-canvas']") as HTMLElement | null) ??
   (document.querySelector(".jsoncrack-canvas") as HTMLElement | null) ??
   (document.querySelector("svg[id*='ref']") as HTMLElement | null);
 

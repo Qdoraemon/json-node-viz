@@ -18,7 +18,10 @@
     "@mantine/dropzone": "^8.3.18",
     "@mantine/hooks": "^8.3.18",
     "@monaco-editor/react": "^4.7.0",
+    "@tabler/icons-react": "^3.44.0",
     "allotment": "^1.20.5",
+    "clsx": "^2.1.1",
+    "d3": "^7.9.0",
     "fast-xml-parser": "5.8.0",
     "gofmt.js": "0.0.2",
     "html-to-image": "1.11.11",
@@ -44,9 +47,11 @@
     "reaflow": "5.4.1",
     "shiki": "^4.0.2",
     "styled-components": "^6.3.11",
+    "tailwind-merge": "^3.3.1",
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.12",
     "@eslint/js": "^10.0.1",
     "@next/bundle-analyzer": "16.2.6",
     "@next/eslint-plugin-next": "16.2.6",
@@ -60,6 +65,7 @@
     "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-unused-imports": "^4.4.1",
     "prettier": "^3.8.1",
+    "tailwindcss": "^4.1.12",
     "ts-node": "^10.9.2",
     "typescript": "5.9.3",
     "typescript-eslint": "^8.57.1"
