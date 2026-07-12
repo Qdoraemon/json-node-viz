@@ -59,7 +59,7 @@ const ExternalMode = () => {
           <Accordion.Item value="4">
             <Accordion.Control>How do I report a bug or request a feature?</Accordion.Control>
             <Accordion.Panel>
-              You can report bugs or request features through the repository or support email.
+              You can report bugs or request features through the support email.
               <br />
               <br />
               Please provide as much detail as possible to help us address your feedback quickly.
@@ -68,8 +68,8 @@ const ExternalMode = () => {
           <Accordion.Item value="5">
             <Accordion.Control>How do I contribute to the project?</Accordion.Control>
             <Accordion.Panel>
-              We welcome contributions. Please read the contribution guide in this repository to
-              get started.
+              We welcome contributions. Please reach out by email with a short description of the
+              improvement you want to make.
             </Accordion.Panel>
           </Accordion.Item>
           <Accordion.Item value="6">
@@ -84,11 +84,7 @@ const ExternalMode = () => {
         </Accordion>
       </Group>
       <Flex justify="center" align="center" gap="sm" mt="md">
-        <Anchor href="https://github.com" rel="noopener" target="_blank" fz="sm">
-          GitHub
-        </Anchor>
-        <Text c="dimmed">•</Text>
-        <Anchor href="/legal/privacy" rel="noopener" target="_self" fz="sm">
+        <Anchor href="/legal/privacy" rel="noopener" target="self" fz="sm">
           Privacy
         </Anchor>
         <Text c="dimmed">•</Text>

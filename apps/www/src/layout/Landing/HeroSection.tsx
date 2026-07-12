@@ -1,9 +1,8 @@
 import React from "react";
 import { Oxygen } from "next/font/google";
-import Link from "next/link";
-import { Stack, Flex, Button } from "@mantine/core";
+import { Button, Flex, Stack } from "@mantine/core";
 import styled from "styled-components";
-import { FaChevronRight, FaGithub, FaStar } from "react-icons/fa6";
+import { FaChevronRight } from "react-icons/fa6";
 
 const oxygen = Oxygen({
   subsets: ["latin-ext"],
@@ -14,44 +13,37 @@ const StyledHeroSection = styled.main`
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 15% 12%, rgba(56, 189, 248, 0.18), transparent 24%),
-    radial-gradient(circle at 85% 20%, rgba(20, 184, 166, 0.16), transparent 22%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 250, 255, 0.96));
+    radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.16), transparent 30%),
+    radial-gradient(circle at 50% 100%, rgba(20, 184, 166, 0.1), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(245, 250, 255, 0.98));
 
   &:before {
     position: absolute;
     content: "";
-    width: 100%;
-    height: 100%;
-    background-size: 40px 40px;
+    inset: 0;
+    background-size: 36px 36px;
     background-image:
       linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
     image-rendering: pixelated;
-    -webkit-mask-image: linear-gradient(to bottom, transparent, 0%, white, 98%, transparent);
-    mask-image: linear-gradient(to bottom, transparent, 0%, white, 98%, transparent);
-  }
-
-  @media only screen and (max-width: 1240px) {
-    flex-direction: column;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, 0%, white 20%, white 84%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, 0%, white 20%, white 84%, transparent);
   }
 `;
 
 const StyledHeroSectionBody = styled.div`
   position: relative;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5.5rem 10% 4.5rem;
-  overflow: hidden;
+  padding: 6rem 16px 4rem;
+  min-height: 58vh;
   text-align: center;
-  gap: 60px;
-  min-height: 52vh;
+  gap: 18px;
 
-  @media only screen and (max-width: 768px) {
-    padding: 6em 16px;
-    padding-top: 10vh;
+  @media only screen and (min-width: 768px) {
+    padding: 6.5rem 24px 5rem;
   }
 `;
 
@@ -70,116 +62,81 @@ const StyledBadge = styled.div`
 `;
 
 const StyledHeroTitle = styled.h1`
-  position: relative;
-  font-size: 2.45rem;
-  font-weight: 800;
-  display: inline;
+  margin: 0;
   color: #0f172a;
-  width: fit-content;
-  line-height: 1.15;
-  max-width: 30rem;
+  line-height: 0.95;
   font-family: ${oxygen.style.fontFamily};
-
-  @media only screen and (min-width: 576px) {
-    font-size: 3.4rem;
-    max-width: 34rem;
-  }
-
-  @media only screen and (min-width: 992px) {
-    font-size: 3.8rem;
-    max-width: 40rem;
-  }
-
-  @media only screen and (min-width: 1400px) {
-    font-size: 4.2rem;
-    max-width: 50rem;
-  }
+  font-size: clamp(3rem, 7vw, 5.6rem);
+  max-width: 11ch;
+  letter-spacing: -0.04em;
 `;
 
-const StyledHeroText = styled.h2`
-  font-size: 14px;
+const StyledHeroText = styled.p`
+  margin: 0;
+  max-width: 44rem;
   color: #4a5568;
-  font-weight: 400;
-  max-width: 75%;
-  margin-top: 1rem;
-  text-align: center;
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.7;
 
   strong {
     font-weight: 700;
     color: #0284c7;
   }
-
-  @media only screen and (min-width: 576px) {
-    font-size: 18px;
-    max-width: 80%;
-  }
-
-  @media only screen and (min-width: 1400px) {
-    font-size: 18px;
-    max-width: 60%;
-  }
 `;
 
-export const HeroSection = ({ stars = 0 }) => {
+const HeroFacts = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+`;
+
+const HeroFact = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 600;
+`;
+
+export const HeroSection = () => {
   return (
     <StyledHeroSection>
       <StyledHeroSectionBody>
-        <Stack flex="1" miw={250} mx="auto" align="center">
-          <StyledBadge>Structured data editor for JSON, YAML, CSV, and XML</StyledBadge>
-          <Link href="https://github.com/jsonviz-dev/jsonviz" target="_blank" rel="noopener">
-            <Button
-              variant="light"
-              color="cyan"
-              radius="xl"
-              ta="left"
-              leftSection={<FaGithub size="18" />}
-              rightSection={
-                <Flex ml="sm" c="cyan.8" align="center" gap="4">
-                  <FaStar />
-                  {stars.toLocaleString("en-US")}
-                </Flex>
-              }
-            >
-              GitHub
-            </Button>
-          </Link>
+        <StyledBadge>Structured data editor for JSON, YAML, CSV, and XML</StyledBadge>
+        <StyledHeroTitle>Turn raw JSON into a clean visual workspace</StyledHeroTitle>
+        <StyledHeroText>
+          A bright, browser-based editor to <strong>visualize</strong>, <strong>format</strong>, and{" "}
+          <strong>explore</strong> structured data with less friction.
+        </StyledHeroText>
 
-          <StyledHeroTitle>Turn raw JSON into a clean visual workspace</StyledHeroTitle>
-          <StyledHeroText>
-            A bright, browser-based editor to <strong>visualize</strong>, <strong>format</strong>, and{" "}
-            <strong>explore</strong> structured data with less friction.
-          </StyledHeroText>
+        <Flex gap="xs" wrap="wrap" justify="center">
+          <Button
+            component="a"
+            color="cyan"
+            href="/editor"
+            size="md"
+            radius="md"
+            variant="filled"
+            rightSection={<FaChevronRight />}
+            fw="500"
+            mt="sm"
+          >
+            Go to Editor
+          </Button>
+        </Flex>
 
-          <Flex gap="xs" wrap="wrap" justify="center" hiddenFrom="xs">
-            <Button
-              component="a"
-              color="cyan"
-              href="/editor"
-              size="md"
-              radius="md"
-              variant="filled"
-              rightSection={<FaChevronRight />}
-              fw="500"
-              mt="sm"
-            >
-              Go to Editor
-            </Button>
-          </Flex>
-          <Flex gap="lg" wrap="wrap" justify="center" visibleFrom="xs">
-            <Button
-              component="a"
-              color="cyan"
-              href="/editor"
-              size="xl"
-              radius="md"
-              variant="filled"
-              rightSection={<FaChevronRight />}
-              mt="sm"
-            >
-              Go to Editor
-            </Button>
-          </Flex>
-        </Stack>
+        <HeroFacts>
+          <HeroFact>One editor</HeroFact>
+          <HeroFact>Text + graph</HeroFact>
+          <HeroFact>Local-first workflow</HeroFact>
+        </HeroFacts>
       </StyledHeroSectionBody>
     </StyledHeroSection>
   );

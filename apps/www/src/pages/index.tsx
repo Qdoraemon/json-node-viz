@@ -1,5 +1,5 @@
 import React from "react";
-import type { InferGetStaticPropsType, GetStaticProps } from "next";
+import type { GetStaticProps } from "next";
 import Head from "next/head";
 import { generateNextSeo } from "next-seo/pages";
 import { SEO } from "../constants/seo";
@@ -12,11 +12,11 @@ import { Section2 } from "../layout/Landing/Section2";
 import { Section3 } from "../layout/Landing/Section3";
 import Layout from "../layout/PageLayout";
 
-export const HomePage = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+export const HomePage = () => {
   return (
     <Layout>
       <Head>{generateNextSeo({ ...SEO, canonical: "https://jsonviz.dev" })}</Head>
-      <HeroSection stars={props.stars} />
+      <HeroSection />
       <HeroPreview />
       <Section1 />
       <Section2 />
@@ -30,20 +30,7 @@ export const HomePage = (props: InferGetStaticPropsType<typeof getStaticProps>) 
 export default HomePage;
 
 export const getStaticProps = (async () => {
-  try {
-    const res = await fetch("https://api.github.com/repos/jsonviz-dev/jsonviz");
-    const data = await res.json();
-
-    return {
-      props: {
-        stars: data?.stargazers_count || 0,
-      },
-    };
-  } catch {
-    return {
-      props: {
-        stars: 0,
-      },
-    };
-  }
-}) satisfies GetStaticProps<{ stars: number }>;
+  return {
+    props: {},
+  };
+}) satisfies GetStaticProps<Record<string, never>>;

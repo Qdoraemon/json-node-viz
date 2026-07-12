@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Anchor, Container, Divider, Flex, Stack, Text, ThemeIcon } from "@mantine/core";
-import { FaGithub } from "react-icons/fa";
+import { Anchor, Container, Divider, Flex, Stack, Text } from "@mantine/core";
 import { JSONCrackLogo } from "../JSONCrackBrandLogo";
 
 export const Footer = () => {
@@ -43,15 +42,11 @@ export const Footer = () => {
           </Stack>
           <Stack gap="xs">
             <Text fz="sm" c="white">
-              Social
+              Contact
             </Text>
-            <Flex gap="xs">
-              <Anchor aria-label="GitHub" href="https://github.com" fz="sm" rel="noopener">
-                <ThemeIcon variant="transparent" color="gray.5">
-                  <FaGithub size={20} />
-                </ThemeIcon>
-              </Anchor>
-            </Flex>
+            <Anchor href="mailto:hello@jsonviz.dev" fz="sm" c="gray.5">
+              hello@jsonviz.dev
+            </Anchor>
           </Stack>
         </Flex>
       </Flex>
