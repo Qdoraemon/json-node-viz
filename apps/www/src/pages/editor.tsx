@@ -288,7 +288,7 @@ const EditorPage = () => {
               </button>
             </div>
 
-            <main className="grid flex-1 grid-rows-[2fr_8fr] gap-3 p-3 min-h-0">
+            <main className="grid flex-1 grid-cols-[3fr_7fr] gap-3 p-3 min-h-0">
               <section className="min-h-0 overflow-hidden rounded-3xl border border-border bg-card shadow-sm">
                   <TextEditor />
               </section>

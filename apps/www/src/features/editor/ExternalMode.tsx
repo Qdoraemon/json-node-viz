@@ -6,6 +6,7 @@ const ExternalMode = () => {
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
+      if (process.env.NEXT_PUBLIC_DISABLE_EXTERNAL_MODE === "true") return setExternal(false);
       if (window.location.pathname.includes("widget")) return setExternal(false);
       if (window.location.host !== "jsonviz.dev") return setExternal(true);
       return setExternal(false);

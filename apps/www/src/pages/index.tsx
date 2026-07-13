@@ -531,15 +531,15 @@ export const HomePage = () => {
             </Brand>
 
             <Nav>
-              <a href="#features">产品功能</a>
-              <a href="#comparison">对比优势</a>
-              <a href="#pricing">定价方案</a>
-              <a href="#faq">常见问题</a>
+              <a href="#features">Features</a>
+              <a href="#comparison">Compare</a>
+              <a href="#pricing">Pricing</a>
+              <a href="#faq">FAQ</a>
             </Nav>
 
             <RightActions>
-              <TextBtn href="/editor">登录</TextBtn>
-              <PrimaryBtn href="/editor">开始使用</PrimaryBtn>
+              <TextBtn href="/editor">Sign in</TextBtn>
+              <PrimaryBtn href="/editor">Get started</PrimaryBtn>
             </RightActions>
           </TopBarInner>
         </Wrap>
@@ -549,19 +549,19 @@ export const HomePage = () => {
         <Wrap>
           <HeroGrid>
             <div>
-              <HeroBadge>全新 v2.0 发布</HeroBadge>
+              <HeroBadge>New v2.0 release</HeroBadge>
               <HeroTitle>
-                让 JSON 数据
-                <span style={{ display: "block", color: "#0f766e" }}>一目了然</span>
+                Make JSON data
+                <span style={{ display: "block", color: "#0f766e" }}>crystal clear</span>
               </HeroTitle>
               <HeroSub>
-                JSONViz 将复杂结构快速转化为可读视图，支持搜索、校验、导出与分享，帮助你在开发、排错和协作中更快定位关键数据。
+                JSONViz turns complex structures into readable visualizations instantly. Search, validate, export and share — everything you need to navigate data during development, debugging and team reviews.
               </HeroSub>
               <HeroButtons>
-                <PrimaryBtn href="/editor">立即开始使用</PrimaryBtn>
-                <SecondaryBtn href="/docs">查看文档</SecondaryBtn>
+                <PrimaryBtn href="/editor">Start using now</PrimaryBtn>
+                <SecondaryBtn href="/docs">View docs</SecondaryBtn>
               </HeroButtons>
-              <HeroMeta>无需注册 · 免费使用 · 月活用户 50K+</HeroMeta>
+              <HeroMeta>No sign-up · Free to use · 50K+ monthly users</HeroMeta>
             </div>
 
             <PreviewCard>
@@ -596,21 +596,21 @@ export const HomePage = () => {
       <Section id="features">
         <Wrap>
           <SectionHeader>
-            <SmallTag>核心功能</SmallTag>
-            <h2>专为开发者打造的每一项功能</h2>
-            <p>从输入原始 JSON 到可视化分析，全链路都围绕高频开发场景设计。</p>
+            <SmallTag>Core Features</SmallTag>
+            <h2>Every feature built for developers</h2>
+            <p>From raw JSON input to visual analysis — the entire workflow is designed around real-world dev scenarios.</p>
           </SectionHeader>
 
           <FeatureGrid>
             {[
-              ["树形可视化", "层级结构可展开，复杂嵌套也能快速定位。", false],
-              ["表格视图", "对象数组自动转表格，便于筛选与比对。", false],
-              ["全局搜索", "支持关键词和路径定位，检索更精准。", true],
-              ["思维导图", "用导图方式表达结构，沟通更直观。", false],
-              ["实时解析", "输入即渲染，保持流畅交互反馈。", false],
-              ["一键分享", "快速生成链接，团队同步上下文。", false],
-              ["多格式导出", "支持 PNG、SVG、CSV、YAML。", false],
-              ["本地安全处理", "核心能力本地运行，降低泄露风险。", false],
+              ["Interactive Tree View", "Expand nested JSON into collapsible node graphs for instant structure clarity.", false],
+              ["Table View", "Auto-detect arrays into sortable tables for quick filtering and side-by-side comparison.", false],
+              ["Full-Text Search", "Keyword and path-based search with instant jump-to-node navigation.", true],
+              ["Mind Map", "Visualize structural relationships in a mind-map layout — great for walkthroughs and reviews.", false],
+              ["Real-Time Parsing", "Parse and render on every keystroke with sub-10ms latency.", false],
+              ["One-Click Share", "Generate shareable links so your team stays in sync instantly.", false],
+              ["Multi-Format Export", "Export to PNG, SVG, CSV, YAML and more.", false],
+              ["Local-First Security", "All processing stays in your browser — your data never leaves your device.", false],
             ].map(([title, desc, active]) => (
               <FeatureCard key={String(title)} $active={Boolean(active)}>
                 <h3>{title}</h3>
@@ -624,16 +624,16 @@ export const HomePage = () => {
       <Section id="comparison">
         <Wrap>
           <SectionHeader>
-            <SmallTag>对比优势</SmallTag>
-            <h2>为什么选择 JSONViz?</h2>
-            <p>覆盖从解析到导出的完整流程，兼顾易用性和专业性。</p>
+            <SmallTag>Compare</SmallTag>
+            <h2>Why JSONViz?</h2>
+            <p>A complete workflow from parsing to export — built for both ease of use and professional depth.</p>
           </SectionHeader>
 
           <TableWrap>
             <CompareTable>
               <thead>
                 <tr>
-                  <th>能力项</th>
+                  <th>Capability</th>
                   <th style={{ color: "#0f766e" }}>JSONViz</th>
                   <th>JSON Editor Online</th>
                   <th>jsonformatter.org</th>
@@ -642,12 +642,12 @@ export const HomePage = () => {
               </thead>
               <tbody>
                 {[
-                  ["可视化方式", "树图 + 结构图", "树图", "文本", "调试"],
-                  ["搜索能力", "关键词 + 路径", "关键词", "有限", "关键词"],
-                  ["大文件处理", "优化", "一般", "弱", "一般"],
-                  ["导出格式", "PNG/SVG/CSV", "PNG", "无", "PNG"],
-                  ["本地安全", "本地优先", "混合", "在线", "混合"],
-                  ["上手成本", "低", "中", "低", "中"],
+                  ["Visualization", "Tree + Graph", "Tree only", "Formatted text", "Debug view"],
+                  ["Search & Navigation", "Keyword + Path", "Keyword", "Limited", "Keyword"],
+                  ["Large File Handling", "Optimized", "Average", "Weak", "Average"],
+                  ["Export Options", "PNG/SVG/CSV", "PNG", "None", "PNG"],
+                  ["Local Security", "Local-first", "Mixed", "Server-side", "Mixed"],
+                  ["Learning Curve", "Low", "Medium", "Low", "Medium"],
                 ].map((row) => (
                   <tr key={String(row[0])}>
                     <td>{row[0]}</td>
@@ -663,10 +663,10 @@ export const HomePage = () => {
 
           <Stats>
             {[
-              ["50K+", "活跃用户"],
-              ["<10ms", "平均响应"],
-              ["99.9%", "稳定性"],
-              ["0 上传", "本地处理"],
+              ["50K+", "Active users"],
+              ["<10ms", "Avg. response"],
+              ["99.9%", "Uptime"],
+              ["0 uploads", "Local processing"],
             ].map((item) => (
               <StatItem key={String(item[1])}>
                 <strong>{item[0]}</strong>
@@ -680,49 +680,49 @@ export const HomePage = () => {
       <Section id="pricing">
         <Wrap>
           <SectionHeader>
-            <SmallTag>定价方案</SmallTag>
-            <h2>简单透明，按需选择</h2>
-            <p>所有方案都围绕 JSON 工作流设计，可随业务规模逐步升级。</p>
+            <SmallTag>Pricing</SmallTag>
+            <h2>Simple, transparent, pick what fits</h2>
+            <p>Every plan is designed around your JSON workflow — upgrade as your needs grow.</p>
           </SectionHeader>
 
           <PricingGrid>
             <Plan>
-              <h3>免费版</h3>
-              <strong>¥0</strong>
-              <p>适合个人和入门场景</p>
+              <h3>Free</h3>
+              <strong>Free</strong>
+              <p>For individuals and light use</p>
               <ul>
-                <li>基础可视化</li>
-                <li>关键词搜索</li>
-                <li>PNG 导出</li>
-                <li>本地隐私处理</li>
+                <li>Basic visualization</li>
+                <li>Keyword search</li>
+                <li>PNG export</li>
+                <li>Local privacy processing</li>
               </ul>
-              <PlanBtn href="/editor">立即免费使用</PlanBtn>
+              <PlanBtn href="/editor">Get started free</PlanBtn>
             </Plan>
             <Plan $focus>
-              <h3>专业版</h3>
-              <strong>¥29</strong>
-              <p>适合高频开发与调试</p>
+              <h3>Pro</h3>
+              <strong>$29</strong>
+              <p>For heavy JSON workflows</p>
               <ul>
-                <li>包含免费版功能</li>
-                <li>高级搜索能力</li>
-                <li>更多导出格式</li>
-                <li>分享与历史记录</li>
+                <li>Everything in Free</li>
+                <li>Advanced search</li>
+                <li>More export formats</li>
+                <li>History & sharing</li>
               </ul>
               <PlanBtn href="/editor" $focus>
-                开始 14 天试用
+                Start 14-day trial
               </PlanBtn>
             </Plan>
             <Plan>
-              <h3>团队版</h3>
-              <strong>¥99</strong>
-              <p>适合多人协作团队</p>
+              <h3>Team</h3>
+              <strong>$99</strong>
+              <p>For teams & organizations</p>
               <ul>
-                <li>包含专业版功能</li>
-                <li>团队协作治理</li>
-                <li>更高配额支持</li>
-                <li>优先服务响应</li>
+                <li>Everything in Pro</li>
+                <li>Collaboration governance</li>
+                <li>Higher quotas</li>
+                <li>Priority support</li>
               </ul>
-              <PlanBtn href="/docs">查看文档</PlanBtn>
+              <PlanBtn href="/docs">View docs</PlanBtn>
             </Plan>
           </PricingGrid>
         </Wrap>
@@ -731,17 +731,17 @@ export const HomePage = () => {
       <Section id="faq">
         <Wrap>
           <SectionHeader>
-            <SmallTag>常见问题</SmallTag>
-            <h2>你可能想知道的</h2>
+            <SmallTag>FAQ</SmallTag>
+            <h2>What you might be wondering</h2>
           </SectionHeader>
 
           <FaqWrap>
             {[
-              ["JSONViz 是否需要注册？", "核心可视化能力可直接使用。"],
-              ["数据会被上传到服务器吗？", "默认本地处理，不强制上传原始数据。"],
-              ["支持哪些格式？", "支持 JSON，并提供多格式处理与导出能力。"],
-              ["如何开始使用？", "点击顶部或文中的按钮进入 /editor。"],
-              ["文档入口在哪里？", "可从 /docs 查看详细用法说明。"],
+              ["Do I need an account?", "No — jump straight into the editor and start using core features instantly."],
+              ["Is my JSON data uploaded?", "All processing is local by default. Your raw data never leaves your browser."],
+              ["What formats are supported?", "JSON is the core format, with multi-format processing and export capabilities."],
+              ["How do I get started?", "Click any of the buttons above to open /editor directly."],
+              ["Where can I find documentation?", "Head to /docs for detailed usage guides and integration instructions."],
             ].map(([q, a]) => (
               <FaqItem key={String(q)}>
                 <summary>{q}</summary>
@@ -757,10 +757,10 @@ export const HomePage = () => {
           <FooterCols>
             <div>
               <h4>JSONViz</h4>
-              <p>将复杂 JSON 数据转化为直观可视化视图的开发者工具。</p>
+              <p>Turn complex JSON data into clear, interactive visualizations — a developer tool you can rely on.</p>
             </div>
             <div>
-              <h4>产品</h4>
+              <h4>Product</h4>
               <p>
                 <Link href="/editor">Editor</Link>
               </p>
@@ -772,7 +772,7 @@ export const HomePage = () => {
               </p>
             </div>
             <div>
-              <h4>法律</h4>
+              <h4>Legal</h4>
               <p>
                 <Link href="/legal/privacy">Privacy</Link>
               </p>
@@ -781,7 +781,7 @@ export const HomePage = () => {
               </p>
             </div>
             <div>
-              <h4>支持</h4>
+              <h4>Support</h4>
               <p>
                 <a href="#faq">FAQ</a>
               </p>
@@ -790,12 +790,12 @@ export const HomePage = () => {
               </p>
             </div>
             <div>
-              <h4>资源</h4>
+              <h4>Resources</h4>
               <p>
-                <Link href="/docs">文档</Link>
+                <Link href="/docs">Docs</Link>
               </p>
               <p>
-                <Link href="/editor">登录</Link>
+                <Link href="/editor">Sign in</Link>
               </p>
             </div>
           </FooterCols>
