@@ -1,3 +1,4 @@
+// Modified 2026-07-13, based on JSON Crack Apache 2.0
 import React from "react";
 import { Accordion, Anchor, Code, Flex, FocusTrap, Group, Modal, Text } from "@mantine/core";
 

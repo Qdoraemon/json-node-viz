@@ -30,6 +30,7 @@ type Props = {
   data: unknown
   settings: GraphSettings
   onStats?: (stats: { nodes: number; edges: number }) => void
+  onNodeClick?: (path: (string | number)[]) => void
 }
 
 const KIND_COLOR: Record<ValueKind, string> = {
@@ -105,7 +106,7 @@ function layout(graph: Graph, settings: GraphSettings): Positioned {
 }
 
 export const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
-  function GraphCanvas({ data, settings, onStats }, ref) {
+  function GraphCanvas({ data, settings, onStats, onNodeClick }, ref) {
     const svgRef = useRef<SVGSVGElement>(null)
     const gRef = useRef<SVGGElement>(null)
     const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null)
@@ -275,7 +276,7 @@ export const GraphCanvas = forwardRef<GraphCanvasHandle, Props>(
 
             {/* Nodes */}
             {positioned.nodes.map((n) => (
-              <NodeCard key={n.id} node={n} />
+              <NodeCard key={n.id} node={n} onClick={() => onNodeClick?.(n.path)} />
             ))}
           </g>
         </svg>
@@ -304,10 +305,14 @@ function EdgeLabel({ path, label }: { path: string; label: string }) {
   )
 }
 
-function NodeCard({ node }: { node: GraphNode }) {
+function NodeCard({ node, onClick }: { node: GraphNode; onClick?: () => void }) {
   const { HEADER_HEIGHT, ROW_HEIGHT } = NODE_METRICS
   return (
-    <g transform={`translate(${node.x}, ${node.y})`}>
+    <g
+      transform={`translate(${node.x}, ${node.y})`}
+      onClick={onClick}
+      style={{ cursor: onClick ? "pointer" : undefined }}
+    >
       <rect
         width={node.width}
         height={node.height}

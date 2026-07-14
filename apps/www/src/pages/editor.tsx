@@ -23,6 +23,7 @@ import useConfig from "../store/useConfig";
 import useFile from "../store/useFile";
 import useJson from "../store/useJson";
 import { useModal } from "../store/useModal";
+import useGraph from "../features/editor/views/GraphView/stores/useGraph";
 
 const ModalController = dynamic(() => import("../features/modals/ModalController"));
 const EditorChoiceModal = dynamic(
@@ -299,7 +300,16 @@ const EditorPage = () => {
                     <NotSupported />
                   </div>
                 ) : (
-                  <GraphCanvas ref={graphRef} data={parsedData} settings={settings} onStats={setStats} />
+                  <GraphCanvas
+                    ref={graphRef}
+                    data={parsedData}
+                    settings={settings}
+                    onStats={setStats}
+                    onNodeClick={(path) => {
+                      useGraph.getState().setSelectedNode({ path } as any);
+                      setVisible("NodeModal", true);
+                    }}
+                  />
                 )}
 
                 <div className="pointer-events-none absolute right-4 top-4 z-20">
