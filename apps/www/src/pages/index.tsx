@@ -1,11 +1,13 @@
 // Modified 2026-07-12, based on JSON Crack Apache 2.0
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { generateNextSeo } from "next-seo/pages";
 import { SEO } from "../constants/seo";
 import styled from "styled-components";
+import { AuthModal } from "../components/AuthModal";
+import { getCurrentUser, logout, type AuthUser } from "../lib/auth";
 
 const PageRoot = styled.main`
   min-height: 100vh;
@@ -110,6 +112,31 @@ const PrimaryBtn = styled(Link)`
   font-size: 12px;
   font-weight: 700;
   padding: 6px 10px;
+`;
+
+const ActionButton = styled.button<{ $primary?: boolean }>`
+  appearance: none;
+  border-radius: 8px;
+  border: 1px solid ${(p) => (p.$primary ? "#0f766e" : "transparent")};
+  background: ${(p) => (p.$primary ? "#0f766e" : "transparent")};
+  color: ${(p) => (p.$primary ? "#ffffff" : "#475569")};
+  font-size: 12px;
+  font-weight: ${(p) => (p.$primary ? 700 : 400)};
+  padding: ${(p) => (p.$primary ? "6px 10px" : "6px 10px")};
+  cursor: pointer;
+
+  &:hover {
+    background: ${(p) => (p.$primary ? "#0d6b63" : "rgba(15, 23, 42, 0.05)")};
+    color: ${(p) => (p.$primary ? "#ffffff" : "#0f172a")};
+  }
+`;
+
+const InlineUser = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #475569;
+  font-size: 12px;
 `;
 
 const Hero = styled.section`
@@ -433,6 +460,21 @@ const PlanBtn = styled(Link)<{ $focus?: boolean }>`
   background: ${(p) => (p.$focus ? "#0f766e" : "rgba(255, 255, 255, 0.75)")};
 `;
 
+const PlanActionBtn = styled.button<{ $focus?: boolean }>`
+  margin-top: 12px;
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  color: ${(p) => (p.$focus ? "#ffffff" : "#0f172a")};
+  border: 1px solid ${(p) => (p.$focus ? "#0f766e" : "rgba(15, 23, 42, 0.2)")};
+  background: ${(p) => (p.$focus ? "#0f766e" : "rgba(255, 255, 255, 0.75)")};
+`;
+
 const FaqWrap = styled.div`
   max-width: 760px;
   margin: 0 auto;
@@ -518,9 +560,45 @@ const FooterBottom = styled.div`
 `;
 
 export const HomePage = () => {
+  const [authOpened, setAuthOpened] = useState(false);
+  const [authMode, setAuthMode] = useState<"login" | "register">("login");
+  const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    getCurrentUser()
+      .then((user) => {
+        if (active) setCurrentUser(user);
+      })
+      .catch(() => {
+        if (active) setCurrentUser(null);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const openAuth = (mode: "login" | "register") => {
+    setAuthMode(mode);
+    setAuthOpened(true);
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    setCurrentUser(null);
+  };
+
   return (
     <PageRoot>
       <Head>{generateNextSeo({ ...SEO, canonical: "https://jsonviz.dev" })}</Head>
+
+      <AuthModal
+        opened={authOpened}
+        initialMode={authMode}
+        onClose={() => setAuthOpened(false)}
+        onAuthed={setCurrentUser}
+      />
 
       <TopBar>
         <Wrap>
@@ -538,8 +616,18 @@ export const HomePage = () => {
             </Nav>
 
             <RightActions>
-              <TextBtn href="/editor">Sign in</TextBtn>
-              <PrimaryBtn href="/editor">Get started</PrimaryBtn>
+              {currentUser ? (
+                <>
+                  <InlineUser>{currentUser.email}</InlineUser>
+                  <TextBtn href="/editor">Open editor</TextBtn>
+                  <ActionButton onClick={handleLogout}>退出</ActionButton>
+                </>
+              ) : (
+                <>
+                  <ActionButton onClick={() => openAuth("login")}>Sign in</ActionButton>
+                  <ActionButton $primary onClick={() => openAuth("register")}>Get started</ActionButton>
+                </>
+              )}
             </RightActions>
           </TopBarInner>
         </Wrap>
@@ -558,10 +646,16 @@ export const HomePage = () => {
                 JSONViz turns complex structures into readable visualizations instantly. Search, validate, export and share — everything you need to navigate data during development, debugging and team reviews.
               </HeroSub>
               <HeroButtons>
-                <PrimaryBtn href="/editor">Start using now</PrimaryBtn>
+                {currentUser ? (
+                  <PrimaryBtn href="/editor">Start using now</PrimaryBtn>
+                ) : (
+                  <ActionButton $primary onClick={() => openAuth("register")}>Start using now</ActionButton>
+                )}
                 <SecondaryBtn href="/docs">View docs</SecondaryBtn>
               </HeroButtons>
-              <HeroMeta>No sign-up · Free to use · 50K+ monthly users</HeroMeta>
+              <HeroMeta>
+                {currentUser ? "Logged in · Ready for editor" : "Register with email verification · Free to use · 50K+ monthly users"}
+              </HeroMeta>
             </div>
 
             <PreviewCard>
@@ -696,7 +790,11 @@ export const HomePage = () => {
                 <li>PNG export</li>
                 <li>Local privacy processing</li>
               </ul>
-              <PlanBtn href="/editor">Get started free</PlanBtn>
+              {currentUser ? (
+                <PlanBtn href="/editor">Get started free</PlanBtn>
+              ) : (
+                <PlanActionBtn onClick={() => openAuth("register")}>Get started free</PlanActionBtn>
+              )}
             </Plan>
             <Plan $focus>
               <h3>Pro</h3>
@@ -708,9 +806,15 @@ export const HomePage = () => {
                 <li>More export formats</li>
                 <li>History & sharing</li>
               </ul>
-              <PlanBtn href="/editor" $focus>
-                Start 14-day trial
-              </PlanBtn>
+              {currentUser ? (
+                <PlanBtn href="/editor" $focus>
+                  Start 14-day trial
+                </PlanBtn>
+              ) : (
+                <PlanActionBtn $focus onClick={() => openAuth("register")}>
+                  Start 14-day trial
+                </PlanActionBtn>
+              )}
             </Plan>
             <Plan>
               <h3>Team</h3>
@@ -795,7 +899,11 @@ export const HomePage = () => {
                 <Link href="/docs">Docs</Link>
               </p>
               <p>
-                <Link href="/editor">Sign in</Link>
+                {currentUser ? (
+                  <Link href="/editor">Open editor</Link>
+                ) : (
+                  <ActionButton onClick={() => openAuth("login")}>Sign in</ActionButton>
+                )}
               </p>
             </div>
           </FooterCols>
