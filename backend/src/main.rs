@@ -1,5 +1,6 @@
-use axum::{Extension, Router};
 use axum::http::HeaderValue;
+use axum::{routing::get, Extension, Json, Router};
+use serde_json::json;
 use state::AppState;
 use tower_http::cors::{AllowCredentials, CorsLayer};
 use tower_http::trace::TraceLayer;
@@ -40,11 +41,18 @@ async fn main() -> anyhow::Result<()> {
                 .parse::<HeaderValue>()
                 .expect("valid FRONTEND_ORIGIN"),
         )
-        .allow_methods([axum::http::Method::GET, axum::http::Method::POST, axum::http::Method::PUT, axum::http::Method::DELETE, axum::http::Method::OPTIONS])
+        .allow_methods([
+            axum::http::Method::GET,
+            axum::http::Method::POST,
+            axum::http::Method::PUT,
+            axum::http::Method::DELETE,
+            axum::http::Method::OPTIONS,
+        ])
         .allow_headers([axum::http::header::CONTENT_TYPE])
         .allow_credentials(AllowCredentials::yes());
 
     let app = Router::new()
+        .route("/health", get(health))
         .merge(routes::auth::router())
         .merge(routes::files::router())
         .merge(routes::webhooks::router(&app_state))
@@ -60,4 +68,8 @@ async fn main() -> anyhow::Result<()> {
     axum::serve(listener, app).await?;
 
     Ok(())
+}
+
+async fn health() -> Json<serde_json::Value> {
+    Json(json!({ "status": "ok" }))
 }
