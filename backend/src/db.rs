@@ -25,9 +25,7 @@ pub async fn init_pool(database_url: &str) -> anyhow::Result<PgPool> {
         .connect(&url)
         .await?;
 
-    sqlx::migrate!("./migrations")
-        .run(&pool)
-        .await?;
+    sqlx::migrate!("./migrations").run(&pool).await?;
 
     tracing::info!("Database connected & migrated");
     Ok(pool)
