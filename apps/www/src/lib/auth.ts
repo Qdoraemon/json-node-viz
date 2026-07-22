@@ -39,7 +39,17 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     return undefined as T;
   }
 
-  return (await response.json()) as T;
+  const raw = await response.text();
+  if (!raw) {
+    return undefined as T;
+  }
+
+  try {
+    return JSON.parse(raw) as T;
+  } catch {
+    // Some endpoints may return non-JSON text with 2xx status.
+    return undefined as T;
+  }
 }
 
 export async function getCurrentUser(): Promise<AuthUser> {
