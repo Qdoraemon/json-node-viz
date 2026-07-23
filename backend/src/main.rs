@@ -2,7 +2,7 @@ use axum::http::HeaderValue;
 use axum::{routing::get, Extension, Json, Router};
 use serde_json::json;
 use state::AppState;
-use tower_http::cors::{AllowCredentials, CorsLayer};
+use tower_http::cors::{AllowCredentials, AllowOrigin, CorsLayer};
 use tower_http::trace::TraceLayer;
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt, EnvFilter};
 
@@ -35,12 +35,17 @@ async fn main() -> anyhow::Result<()> {
         cfg.resend_from_email.clone(),
     );
 
+    let frontend_origin = cfg.frontend_origin.clone();
     let cors = CorsLayer::new()
-        .allow_origin(
-            cfg.frontend_origin
-                .parse::<HeaderValue>()
-                .expect("valid FRONTEND_ORIGIN"),
-        )
+        .allow_origin(AllowOrigin::predicate(move |origin: &HeaderValue, _req: &_| {
+            let Ok(origin_str) = origin.to_str() else {
+                return false;
+            };
+            // Allow configured origin, localhost dev, and all Vercel preview deployments
+            origin_str == frontend_origin
+                || origin_str == "http://localhost:3000"
+                || origin_str.ends_with(".vercel.app")
+        }))
         .allow_methods([
             axum::http::Method::GET,
             axum::http::Method::POST,
