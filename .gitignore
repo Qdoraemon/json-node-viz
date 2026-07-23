@@ -4,6 +4,12 @@
 .codex
 skills-lock.json
 
+# Environment files (Render sets vars via dashboard, not .env)
+.env
+.env.*
+!.env.example
+!.env.local.example
+
 # Package manager
 node_modules/
 .npm-cache/

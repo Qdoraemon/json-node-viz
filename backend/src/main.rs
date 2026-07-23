@@ -48,7 +48,11 @@ async fn main() -> anyhow::Result<()> {
             axum::http::Method::DELETE,
             axum::http::Method::OPTIONS,
         ])
-        .allow_headers([axum::http::header::CONTENT_TYPE])
+        .allow_headers([
+            axum::http::header::CONTENT_TYPE,
+            axum::http::header::AUTHORIZATION,
+            axum::http::header::HeaderName::from_static("x-requested-with"),
+        ])
         .allow_credentials(AllowCredentials::yes());
 
     let app = Router::new()

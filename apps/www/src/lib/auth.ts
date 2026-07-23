@@ -10,7 +10,7 @@ type ApiErrorBody = {
   error?: string;
 };
 
-const API_BASE = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001";
+const API_BASE = process.env.NEXT_PUBLIC_BACKEND_URL || "https://json-node-viz.onrender.com";
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`, {
