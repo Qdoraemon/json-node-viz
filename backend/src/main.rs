@@ -37,15 +37,17 @@ async fn main() -> anyhow::Result<()> {
 
     let frontend_origin = cfg.frontend_origin.clone();
     let cors = CorsLayer::new()
-        .allow_origin(AllowOrigin::predicate(move |origin: &HeaderValue, _req: &_| {
-            let Ok(origin_str) = origin.to_str() else {
-                return false;
-            };
-            // Allow configured origin, localhost dev, and all Vercel preview deployments
-            origin_str == frontend_origin
-                || origin_str == "http://localhost:3000"
-                || origin_str.ends_with(".vercel.app")
-        }))
+        .allow_origin(AllowOrigin::predicate(
+            move |origin: &HeaderValue, _req: &_| {
+                let Ok(origin_str) = origin.to_str() else {
+                    return false;
+                };
+                // Allow configured origin, localhost dev, and all Vercel preview deployments
+                origin_str == frontend_origin
+                    || origin_str == "http://localhost:3000"
+                    || origin_str.ends_with(".vercel.app")
+            },
+        ))
         .allow_methods([
             axum::http::Method::GET,
             axum::http::Method::POST,
