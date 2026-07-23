@@ -26,13 +26,6 @@ import { useModal } from "../store/useModal";
 import useGraph from "../features/editor/views/GraphView/stores/useGraph";
 
 const ModalController = dynamic(() => import("../features/modals/ModalController"));
-const EditorChoiceModal = dynamic(
-  () =>
-    import("../features/modals/EditorChoiceModal").then(mod => ({
-      default: mod.EditorChoiceModal,
-    })),
-  { ssr: false }
-);
 const ExternalMode = dynamic(() => import("../features/editor/ExternalMode"));
 const TextEditor = dynamic(() => import("../features/editor/TextEditor"), {
   ssr: false,
@@ -220,7 +213,6 @@ const EditorPage = () => {
           <div className="flex min-h-screen flex-col bg-background text-foreground">
             <ExternalMode />
             <ModalController />
-            <EditorChoiceModal />
 
             <TopNav
               onOpenStorage={() => setDrawerOpen(true)}

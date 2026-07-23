@@ -2,10 +2,15 @@ use sqlx::postgres::PgPoolOptions;
 use sqlx::PgPool;
 use std::time::Duration;
 
-/// Ensure the DATABASE_URL includes sslmode=require (Render PostgreSQL requires SSL).
+/// Ensure the DATABASE_URL includes an appropriate sslmode.
+/// Render PostgreSQL requires SSL; local dev Postgres usually does not.
 fn ensure_ssl(url: &str) -> String {
     if url.contains("sslmode=") {
         return url.to_string();
+    }
+    // Only force sslmode=require for remote databases (non-localhost)
+    if url.contains("localhost") || url.contains("127.0.0.1") {
+        return format!("{url}?sslmode=disable");
     }
     if url.contains('?') {
         format!("{url}&sslmode=require")
