@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import type { GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { generateNextSeo } from "next-seo/pages";
 import { SEO } from "../constants/seo";
 import styled from "styled-components";
@@ -560,6 +561,7 @@ const FooterBottom = styled.div`
 `;
 
 export const HomePage = () => {
+  const router = useRouter();
   const [authOpened, setAuthOpened] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "register">("login");
   const [currentUser, setCurrentUser] = useState<AuthUser | null>(null);
@@ -625,7 +627,7 @@ export const HomePage = () => {
               ) : (
                 <>
                   <ActionButton onClick={() => openAuth("login")}>Sign in</ActionButton>
-                  <ActionButton $primary onClick={() => openAuth("register")}>Get started</ActionButton>
+                  <ActionButton $primary onClick={() => router.push("/editor")}>Get started</ActionButton>
                 </>
               )}
             </RightActions>
@@ -649,7 +651,7 @@ export const HomePage = () => {
                 {currentUser ? (
                   <PrimaryBtn href="/editor">Start using now</PrimaryBtn>
                 ) : (
-                  <ActionButton $primary onClick={() => openAuth("register")}>Start using now</ActionButton>
+                  <ActionButton $primary onClick={() => router.push("/editor")}>Start using now</ActionButton>
                 )}
                 <SecondaryBtn href="/docs">View docs</SecondaryBtn>
               </HeroButtons>

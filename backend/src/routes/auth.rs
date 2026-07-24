@@ -1,9 +1,9 @@
-use axum::{extract::State, routing::post, Json, Router};
-use axum_extra::extract::cookie::{Cookie, CookieJar};
 use argon2::{
     password_hash::{rand_core::OsRng, PasswordHash, PasswordHasher, PasswordVerifier, SaltString},
     Argon2,
 };
+use axum::{extract::State, routing::post, Json, Router};
+use axum_extra::extract::cookie::{Cookie, CookieJar};
 use chrono::{Duration, Utc};
 use rand::Rng;
 use serde_json::json;
@@ -24,7 +24,10 @@ pub fn router() -> Router<AppState> {
         .route("/auth/register", post(register))
         .route("/auth/login", post(login))
         .route("/auth/logout", post(logout))
-        .route("/auth/me", axum::routing::get(me).route_layer(axum::middleware::from_fn(require_auth)))
+        .route(
+            "/auth/me",
+            axum::routing::get(me).route_layer(axum::middleware::from_fn(require_auth)),
+        )
 }
 
 async fn send_verification_email(
@@ -38,7 +41,9 @@ async fn send_verification_email(
     }
 
     if state.resend_api_key.is_empty() {
-        return Err(AppError::Internal("RESEND_API_KEY is not configured".into()));
+        return Err(AppError::Internal(
+            "RESEND_API_KEY is not configured".into(),
+        ));
     }
 
     let body = json!({
@@ -98,7 +103,9 @@ async fn send_register_code(
     .await?
     .get("ok");
     if recent_exists {
-        return Err(AppError::BadRequest("Please wait 60 seconds before requesting a new code".into()));
+        return Err(AppError::BadRequest(
+            "Please wait 60 seconds before requesting a new code".into(),
+        ));
     }
 
     let code = generate_six_digit_code();
@@ -131,10 +138,14 @@ async fn register_with_code(
         return Err(AppError::BadRequest("Valid email is required".into()));
     }
     if payload.password.len() < 8 {
-        return Err(AppError::BadRequest("Password must be at least 8 characters".into()));
+        return Err(AppError::BadRequest(
+            "Password must be at least 8 characters".into(),
+        ));
     }
     if code.len() != 6 || !code.chars().all(|ch| ch.is_ascii_digit()) {
-        return Err(AppError::BadRequest("Verification code must be 6 digits".into()));
+        return Err(AppError::BadRequest(
+            "Verification code must be 6 digits".into(),
+        ));
     }
 
     let exists: bool = sqlx::query("SELECT EXISTS(SELECT 1 FROM users WHERE email = $1) AS ok")
@@ -258,14 +269,20 @@ async fn login(
 
 /// POST /auth/logout
 async fn logout(jar: CookieJar) -> CookieJar {
-    jar.remove(Cookie::from(SESSION_COOKIE))
+    // Build a removal cookie with the same attributes as the login cookie,
+    // otherwise the browser may not match and delete it in cross-origin setups.
+    jar.remove(
+        Cookie::build((SESSION_COOKIE, ""))
+            .path("/")
+            .secure(true)
+            .http_only(true)
+            .same_site(axum_extra::extract::cookie::SameSite::Lax)
+            .build(),
+    )
 }
 
 /// GET /auth/me
-async fn me(
-    State(state): State<AppState>,
-    jar: CookieJar,
-) -> Result<Json<UserPublic>, AppError> {
+async fn me(State(state): State<AppState>, jar: CookieJar) -> Result<Json<UserPublic>, AppError> {
     let user_id = jar
         .get(SESSION_COOKIE)
         .and_then(|c| uuid::Uuid::parse_str(c.value()).ok())
