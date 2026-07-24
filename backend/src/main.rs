@@ -65,6 +65,7 @@ async fn main() -> anyhow::Result<()> {
     let app = Router::new()
         .route("/health", get(health))
         .merge(routes::auth::router())
+        .merge(routes::events::router())
         .merge(routes::files::router())
         .merge(routes::webhooks::router(&app_state))
         .layer(TraceLayer::new_for_http())
