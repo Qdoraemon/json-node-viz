@@ -200,8 +200,9 @@ async fn register_with_code(
 
     let cookie = Cookie::build((SESSION_COOKIE, user.id.to_string()))
         .path("/")
+        .secure(true)
         .http_only(true)
-        .same_site(axum_extra::extract::cookie::SameSite::Lax)
+        .same_site(axum_extra::extract::cookie::SameSite::None)
         .max_age(time::Duration::days(30))
         .build();
 
@@ -248,8 +249,9 @@ async fn login(
 
     let cookie = Cookie::build((SESSION_COOKIE, user_id.to_string()))
         .path("/")
+        .secure(true)
         .http_only(true)
-        .same_site(axum_extra::extract::cookie::SameSite::Lax)
+        .same_site(axum_extra::extract::cookie::SameSite::None)
         .max_age(time::Duration::days(30))
         .build();
 
@@ -276,7 +278,7 @@ async fn logout(jar: CookieJar) -> CookieJar {
             .path("/")
             .secure(true)
             .http_only(true)
-            .same_site(axum_extra::extract::cookie::SameSite::Lax)
+            .same_site(axum_extra::extract::cookie::SameSite::None)
             .build(),
     )
 }
