@@ -28,7 +28,7 @@ impl AppConfig {
                 .eq_ignore_ascii_case("true"),
             resend_api_key: env::var("RESEND_API_KEY").unwrap_or_default(),
             resend_from_email: env::var("RESEND_FROM_EMAIL")
-                .unwrap_or_else(|_| "JsonViz <noreply@jsonviz.dev>".into()),
+                .unwrap_or_else(|_| "JsonViz <noreply@mail.fluxhub.dev>".into()),
             frontend_origin: env::var("FRONTEND_ORIGIN")
                 .unwrap_or_else(|_| "http://localhost:3000".into()),
             host: env::var("HOST").unwrap_or_else(|_| "0.0.0.0".into()),
