@@ -10,7 +10,7 @@ export const EditorChoiceModal = () => {
 
   useEffect(() => {
     const dismissed = document.cookie.split("; ").some(c => c === `${SESSION_KEY}=true`);
-    if (process.env.NEXT_PUBLIC_DISABLE_EXTERNAL_MODE !== "true" && !dismissed) {
+    if (!dismissed) {
       setOpened(true);
     }
   }, []);
@@ -46,11 +46,11 @@ export const EditorChoiceModal = () => {
       }}
     >
       <SimpleGrid cols={2} spacing="md" mt="xs">
-        {/* ToDiagram Card */}
+        {/* Open Source Card */}
         <Stack
           gap={0}
           style={{
-            border: "2px solid var(--mantine-color-pink-6)",
+            border: "2px solid var(--mantine-color-blue-6)",
             borderRadius: "var(--mantine-radius-md)",
             overflow: "hidden",
           }}
@@ -62,33 +62,33 @@ export const EditorChoiceModal = () => {
             ta="center"
             py={6}
             style={{
-              background: "var(--mantine-color-pink-6)",
+              background: "var(--mantine-color-blue-6)",
             }}
           >
-            Recommended
+            Open Source
           </Text>
           <Stack gap="md" p="lg">
             <Stack gap={4}>
               <Text fw={700} size="lg">
-                ToDiagram
+                JsonViz
               </Text>
               <Text size="sm" c="dimmed">
-                Next-gen editor with high-performance, AI Copilot and more
+                Fast, local-first editor for structured data
               </Text>
             </Stack>
 
             <Button
               component="a"
-              href="https://todiagram.com/editor?utm_source=jsoncrack&utm_medium=promotion_modal&utm_campaign=editor_redirect"
+              href="/editor"
               target="_blank"
               rel="noopener noreferrer"
-              color="pink"
+              color="blue"
               size="md"
               radius="md"
               fullWidth
               onClick={handleDismiss}
             >
-              Open ToDiagram
+              Open JsonViz
             </Button>
 
             <List
@@ -123,7 +123,7 @@ export const EditorChoiceModal = () => {
                   </ThemeIcon>
                 }
               >
-                Cloud storage
+                Local storage
               </List.Item>
               <List.Item
                 icon={
@@ -132,7 +132,7 @@ export const EditorChoiceModal = () => {
                   </ThemeIcon>
                 }
               >
-                Limitless diagram size
+                High render limit
               </List.Item>
               <List.Item
                 icon={
@@ -141,7 +141,7 @@ export const EditorChoiceModal = () => {
                   </ThemeIcon>
                 }
               >
-                Collaboration tools
+                No account required
               </List.Item>
             </List>
           </Stack>
@@ -159,15 +159,15 @@ export const EditorChoiceModal = () => {
         >
           <Stack gap={4}>
             <Text fw={700} size="lg">
-              Open Source
+              Open source core
             </Text>
             <Text size="sm" c="dimmed">
-              Code only, no login, always free. Best for small files and quick edits
+              Core editor with no upgrade prompts. Best for local inspection and quick edits
             </Text>
           </Stack>
 
           <Button variant="default" size="md" radius="md" fullWidth onClick={handleDismiss}>
-            Stay on JSON Crack
+            Stay on JsonViz
           </Button>
 
           <List
@@ -218,12 +218,12 @@ export const EditorChoiceModal = () => {
       </SimpleGrid>
       <Text size="xs" c="dimmed" ta="center" mt="md">
         <a
-          href="https://todiagram.com/legal/privacy?utm_source=jsoncrack&utm_medium=promotion_modal"
+          href="/legal/privacy"
           target="_blank"
           rel="noopener noreferrer"
           style={{ color: "inherit", textDecoration: "underline" }}
         >
-          ToDiagram Privacy Policy
+          Privacy Policy
         </a>
       </Text>
     </Modal>

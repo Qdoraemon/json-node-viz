@@ -1,3 +1,4 @@
+// Modified 2026-07-13, based on JSON Crack Apache 2.0
 import React from "react";
 import type { ModalProps } from "@mantine/core";
 import {
@@ -63,13 +64,14 @@ function downloadURI(uri: string, name: string) {
 }
 
 const getExportElement = () =>
+  (document.querySelector("[data-export='graph-canvas']") as HTMLElement | null) ??
   (document.querySelector(".jsoncrack-canvas") as HTMLElement | null) ??
   (document.querySelector("svg[id*='ref']") as HTMLElement | null);
 
 export const DownloadModal = ({ opened, onClose }: ModalProps) => {
   const [extension, setExtension] = React.useState(Extensions.PNG);
   const [fileDetails, setFileDetails] = React.useState({
-    filename: "jsoncrack.com",
+    filename: "jsonviz",
     backgroundColor: "#FFFFFF",
     quality: 1,
   });

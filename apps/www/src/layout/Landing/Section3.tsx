@@ -55,7 +55,7 @@ const StyledDottedContainer = styled.div`
 
 export const Section3 = () => {
   return (
-    <Container size="xl" py="80">
+    <Container size="xl" py="96">
       <Flex justify="center" gap="80" align="center">
         <StyledDottedContainer>
           <Image
@@ -77,11 +77,11 @@ export const Section3 = () => {
             order={2}
             c="gray.9"
           >
-            Visualize and convert to multiple formats
+            Visualize and convert across common formats
           </Title>
           <Text my="md" c="gray.7" fz={16} maw={510}>
-            JSON Crack supports formats like CSV, YAML, and XML, making it easier to visualize your
-            data, no matter the type.
+            JsonViz supports CSV, YAML, and XML so the same workspace can handle different input
+            shapes without context switching.
           </Text>
           <List
             fz={{
@@ -103,11 +103,12 @@ export const Section3 = () => {
           <Button
             component="a"
             href="/editor"
-            color="#202842"
+            color="cyan"
             size="lg"
             radius="md"
             w="fit-content"
             mt="sm"
+            variant="filled"
           >
             Open Editor
           </Button>

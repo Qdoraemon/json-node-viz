@@ -8,8 +8,8 @@
     "content": "While traditional JSON Viewers and JSON formatters only allow you to work with raw data on text editors, JSON Crack offers a unique visual representation of your data, making it easier to understand and analyze complex data structures. It provides a tree view and graph view to help you visualize your data in different ways."
   },
   {
-    "title": "Is JSON Crack free?",
-    "content": "Yes, JSON Crack is a free-forever open source online tool. For advanced features you may use ToDiagram.com"
+    "title": "Is JsonViz free?",
+    "content": "Yes, JsonViz is free to use for core visualization and editing features."
   },
   {
     "title": "Is my data secure?",
@@ -36,7 +36,7 @@
     "content": "You can use the VS Code extension to visualize JSON data directly in your editor. Install the extension from the VS Code marketplace and follow the instructions at extension's page."
   },
   {
-    "title": "I've previously subscribed to the premium plan, where did it go?",
-    "content": "We have moved the premium features to ToDiagram.com. You can use the same credentials to access the premium features or manage your subscription."
+    "title": "What happened to the premium plan?",
+    "content": "JsonViz does not expose a premium plan in this version. The focus is on the open-source core experience."
   }
 ]

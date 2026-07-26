@@ -92,7 +92,7 @@ const ShiningButton = styled.div`
 `;
 
 const FEATURES = [
-  "Unlimited diagram size",
+  "Higher render limit",
   "Compare data side by side",
   "Edit data directly on graph",
   "AI-powered data filter",
@@ -106,26 +106,16 @@ export const NotSupported = () => {
     <Overlay backgroundOpacity={0.6} color={darkmodeEnabled ? "#111" : "#e2f0f3"} blur="3" center>
       <CardWrapper data-dark={darkmodeEnabled}>
         <Stack align="center" gap="md">
-          <Image src="https://todiagram.com/logo.svg" alt="ToDiagram" w={48} h={48} />
+          <Image src="/assets/192.png" alt="JsonViz" w={48} h={48} />
           <Badge variant="light" color="teal" size="sm" radius="sm">
-            Upgrade Required
+            Large input notice
           </Badge>
           <Text fz="24" fw={700} c={darkmodeEnabled ? "white" : "dark"} ta="center" lh={1.2}>
             Your diagram is too large
           </Text>
           <Text ta="center" size="sm" c="dimmed" maw="360" lh={1.5}>
-            JSON Crack can&apos;t render this file.{" "}
-            <Anchor
-              inherit
-              c="teal"
-              fw={500}
-              href="https://todiagram.com/editor?utm_source=jsoncrack&utm_medium=data_limit"
-              target="_blank"
-              rel="noopener"
-            >
-              ToDiagram
-            </Anchor>{" "}
-            handles large datasets with ease.
+            JsonViz is optimized for interactive graphs, but very large datasets may need a
+            simplified view.
           </Text>
           <List
             spacing="xs"
@@ -143,17 +133,8 @@ export const NotSupported = () => {
             ))}
           </List>
           <ShiningButton>
-            <Button
-              component="a"
-              href={`https://todiagram.com/editor?utm_source=jsoncrack&utm_medium=data_limit&modal=upgrade&format=${format}&example=true`}
-              rel="noopener"
-              size="md"
-              fullWidth
-              target="_blank"
-              color="teal"
-              radius="md"
-            >
-              Continue with ToDiagram &rarr;
+            <Button component="a" href="/docs" rel="noopener" size="md" fullWidth target="_self" color="teal" radius="md">
+              View performance tips
             </Button>
           </ShiningButton>
         </Stack>

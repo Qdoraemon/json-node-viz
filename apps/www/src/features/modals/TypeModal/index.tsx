@@ -1,3 +1,4 @@
+// Modified 2026-07-13, based on JSON Crack Apache 2.0
 import React from "react";
 import type { ModalProps } from "@mantine/core";
 import { Stack, Modal, Select, ScrollArea } from "@mantine/core";
@@ -12,6 +13,7 @@ enum Language {
   JSON_SCHEMA = "json_schema",
   Kotlin = "kotlin",
   Rust = "rust",
+  Python = "python",
 }
 
 const typeOptions = [
@@ -44,6 +46,11 @@ const typeOptions = [
     label: "Rust",
     value: Language.Rust,
     lang: "rust",
+  },
+  {
+    label: "Python",
+    value: Language.Python,
+    lang: "python",
   },
 ];
 

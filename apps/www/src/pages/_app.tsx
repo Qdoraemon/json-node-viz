@@ -6,11 +6,11 @@ import "@mantine/core/styles.css";
 import { CodeHighlightAdapterProvider, createShikiAdapter } from "@mantine/code-highlight";
 import "@mantine/code-highlight/styles.css";
 import { ThemeProvider } from "styled-components";
-import "jsoncrack-react/style.css";
 import { SoftwareApplicationJsonLd } from "next-seo";
 import { generateDefaultSeo } from "next-seo/pages";
 import { GoogleAnalytics } from "nextjs-google-analytics";
 import { Toaster } from "react-hot-toast";
+import "../../globals.css";
 import GlobalStyle from "../constants/globalStyle";
 import { SEO } from "../constants/seo";
 import { lightTheme } from "../constants/theme";
@@ -81,7 +81,7 @@ function JSONCrackApp({ Component, pageProps }: AppProps) {
     <>
       <Head>{generateDefaultSeo(SEO)}</Head>
       <SoftwareApplicationJsonLd
-        name="JSON Crack"
+        name="JsonViz"
         type="SoftwareApplication"
         operatingSystem="Browser"
         applicationCategory="DeveloperApplication"

@@ -27,7 +27,7 @@ const StyledFrame = styled.iframe`
 
 const iframeExample = `<iframe
   id="json-crack-embed"
-  src="https://jsoncrack.com/widget"
+  src="https://jsonviz.dev/widget"
   width="100%"
   height="600"
   style="border: none;"
@@ -35,7 +35,7 @@ const iframeExample = `<iframe
 
 const fetchExample = `<iframe
   id="json-crack-embed"
-  src="https://jsoncrack.com/widget?json=https://catfact.ninja/fact"
+  src="https://jsonviz.dev/widget?json=https://catfact.ninja/fact"
   width="100%"
   height="600"
   style="border: none;"
@@ -65,10 +65,10 @@ const Docs = () => {
       <Head>
         {generateNextSeo({
           ...SEO,
-          title: "Documentation - JSON Crack",
+          title: "Documentation - JsonViz",
           description:
-            "Integrate JSON Crack into your website with iframes, postMessage API, or the React component.",
-          canonical: "https://jsoncrack.com/docs",
+            "Integrate JsonViz into your website with iframes, postMessage API, or the React component.",
+          canonical: "https://jsonviz.dev/docs",
         })}
       </Head>
       <Container size="md" py={60}>
@@ -77,7 +77,7 @@ const Docs = () => {
             Embed Documentation
           </Title>
           <Text c="gray.6" fz={18} maw={600}>
-            Three ways to integrate JSON Crack into your app: iframe widget, postMessage API, or the
+            Three ways to integrate JsonViz into your app: iframe widget, postMessage API, or the
             React component.
           </Text>
         </Stack>
@@ -117,7 +117,7 @@ const Docs = () => {
                 1. Iframe Widget
               </Badge>
               <Text c="gray.7" fz={15} lh={1.7}>
-                The simplest way to embed JSON Crack. Add an iframe pointing to <Code>/widget</Code>{" "}
+                The simplest way to embed JsonViz. Add an iframe pointing to <Code>/widget</Code>{" "}
                 and it will render an interactive graph viewer.
               </Text>
               <CodeHighlight

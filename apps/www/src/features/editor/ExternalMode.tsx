@@ -1,3 +1,4 @@
+// Modified 2026-07-13, based on JSON Crack Apache 2.0
 import React from "react";
 import { Accordion, Anchor, Code, Flex, FocusTrap, Group, Modal, Text } from "@mantine/core";
 
@@ -5,12 +6,11 @@ const ExternalMode = () => {
   const [isExternal, setExternal] = React.useState(false);
 
   React.useEffect(() => {
-    if (process.env.NEXT_PUBLIC_DISABLE_EXTERNAL_MODE === "false") {
-      if (typeof window !== "undefined") {
-        if (window.location.pathname.includes("widget")) return setExternal(false);
-        if (window.location.host !== "jsoncrack.com") return setExternal(true);
-        return setExternal(false);
-      }
+    if (typeof window !== "undefined") {
+      if (process.env.NEXT_PUBLIC_DISABLE_EXTERNAL_MODE === "true") return setExternal(false);
+      if (window.location.pathname.includes("widget")) return setExternal(false);
+      if (window.location.host !== "jsonviz.dev") return setExternal(true);
+      return setExternal(false);
     }
   }, []);
 
@@ -18,7 +18,7 @@ const ExternalMode = () => {
 
   return (
     <Modal
-      title="Thanks for using JSON Crack"
+      title="Thanks for using JsonViz"
       opened={isExternal}
       onClose={() => setExternal(false)}
       centered
@@ -30,21 +30,12 @@ const ExternalMode = () => {
           <Accordion.Item value="1">
             <Accordion.Control>How can I change the file size limit?</Accordion.Control>
             <Accordion.Panel>
-              The main reason for the file size limit is to prevent performance issues, not to push
-              you to upgrade. You can increase the limit by setting{" "}
+              The main reason for the file size limit is to prevent performance issues. You can
+              increase the limit by setting{" "}
               <Code>NEXT_PUBLIC_NODE_LIMIT</Code> in your <Code>.env</Code> file.
               <br />
               <br />
-              If you&apos;d like to work with even larger files and unlock additional features, you
-              can upgrade to the{" "}
-              <Anchor
-                href="https://todiagram.com?utm_source=jsoncrack&utm_medium=external-mode"
-                rel="noopener"
-                target="_blank"
-              >
-                Pro
-              </Anchor>{" "}
-              version.
+              For larger datasets, use a lower-detail view or split the input before rendering.
             </Accordion.Panel>
           </Accordion.Item>
           <Accordion.Item value="2">
@@ -61,12 +52,8 @@ const ExternalMode = () => {
             <Accordion.Control>What are the license terms?</Accordion.Control>
             <Accordion.Panel>
               Read the full license terms on{" "}
-              <Anchor
-                href="https://github.com/AykutSarac/jsoncrack.com/blob/main/LICENSE.md"
-                rel="noopener"
-                target="_blank"
-              >
-                GitHub
+              <Anchor href="/legal/terms" rel="noopener" target="_self">
+                Terms
               </Anchor>
               .
             </Accordion.Panel>
@@ -74,15 +61,7 @@ const ExternalMode = () => {
           <Accordion.Item value="4">
             <Accordion.Control>How do I report a bug or request a feature?</Accordion.Control>
             <Accordion.Panel>
-              You can report bugs or request features by opening an issue on our{" "}
-              <Anchor
-                href="https://github.com/AykutSarac/jsoncrack.com/issues"
-                rel="noopener"
-                target="_blank"
-              >
-                GitHub Issues page
-              </Anchor>
-              .
+              You can report bugs or request features through the support email.
               <br />
               <br />
               Please provide as much detail as possible to help us address your feedback quickly.
@@ -91,66 +70,28 @@ const ExternalMode = () => {
           <Accordion.Item value="5">
             <Accordion.Control>How do I contribute to the project?</Accordion.Control>
             <Accordion.Panel>
-              We welcome contributions! Visit our{" "}
-              <Anchor
-                href="https://github.com/AykutSarac/jsoncrack.com"
-                rel="noopener"
-                target="_blank"
-              >
-                GitHub repository
-              </Anchor>{" "}
-              and read the{" "}
-              <Anchor
-                href="https://github.com/AykutSarac/jsoncrack.com/blob/main/CONTRIBUTING.md"
-                rel="noopener"
-                target="_blank"
-              >
-                contributing guide
-              </Anchor>{" "}
-              to get started.
+              We welcome contributions. Please reach out by email with a short description of the
+              improvement you want to make.
             </Accordion.Panel>
           </Accordion.Item>
           <Accordion.Item value="6">
             <Accordion.Control>
-              What is the difference between JSON Crack and ToDiagram?
+              What is the difference between JsonViz and the original project?
             </Accordion.Control>
             <Accordion.Panel>
-              JSON Crack is a free and open-source tool for visualizing JSON data. ToDiagram is the
-              professional version that offers advanced features, higher limits, and the ability to
-              edit data directly from diagrams. You can learn more or upgrade at{" "}
-              <Anchor
-                href="https://todiagram.com?utm_source=jsoncrack&utm_medium=external-mode"
-                rel="noopener"
-                target="_blank"
-              >
-                todiagram.com
-              </Anchor>
-              .
+              JsonViz is a rebranded open-source fork focused on the core visualization workflow.
+              This version keeps the editor centered on local data inspection and transformation.
             </Accordion.Panel>
           </Accordion.Item>
         </Accordion>
       </Group>
       <Flex justify="center" align="center" gap="sm" mt="md">
-        <Anchor
-          href="https://github.com/AykutSarac/jsoncrack.com"
-          rel="noopener"
-          target="_blank"
-          fz="sm"
-        >
-          GitHub
+        <Anchor href="/legal/privacy" rel="noopener" target="self" fz="sm">
+          Privacy
         </Anchor>
         <Text c="dimmed">•</Text>
-        <Anchor
-          href="https://todiagram.com?utm_source=jsoncrack&utm_medium=external-mode"
-          rel="noopener"
-          target="_blank"
-          fz="sm"
-        >
-          ToDiagram
-        </Anchor>
-        <Text c="dimmed">•</Text>
-        <Anchor href="https://x.com/aykutsarach" rel="noopener" target="_blank" fz="sm">
-          Aykut Saraç (@aykutsarach)
+        <Anchor href="https://x.com" rel="noopener" target="blank" fz="sm">
+          X
         </Anchor>
       </Flex>
     </Modal>

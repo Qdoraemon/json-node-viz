@@ -1,10 +1,10 @@
+// Modified 2026-07-13, based on JSON Crack Apache 2.0
 import React from "react";
 import type { ModalProps } from "@mantine/core";
-import { Stack, Modal, Button, Text, Anchor, Group, Paper } from "@mantine/core";
+import { Stack, Modal, Button, Text, Group, Paper } from "@mantine/core";
 import Editor from "@monaco-editor/react";
 import { event as gaEvent } from "nextjs-google-analytics";
 import { toast } from "react-hot-toast";
-import { VscLinkExternal } from "react-icons/vsc";
 import useConfig from "../../../store/useConfig";
 import useFile from "../../../store/useFile";
 
@@ -55,14 +55,9 @@ export const SchemaModal = ({ opened, onClose }: ModalProps) => {
     <Modal title="JSON Schema" size="lg" opened={opened} onClose={onClose} centered>
       <Stack>
         <Text fz="sm">Any validation failures are shown at the bottom toolbar of pane.</Text>
-        <Anchor
-          fz="sm"
-          target="_blank"
-          href="https://niem.github.io/json/sample-schema/"
-          rel="noopener noreferrer"
-        >
-          View Examples <VscLinkExternal />
-        </Anchor>
+        <Text fz="sm" c="dimmed">
+          Use your own schema or start from the built-in sample.
+        </Text>
         <Paper withBorder radius="sm" style={{ overflow: "hidden" }}>
           <Editor
             value={schema ?? ""}
