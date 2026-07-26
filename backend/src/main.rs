@@ -42,10 +42,11 @@ async fn main() -> anyhow::Result<()> {
                 let Ok(origin_str) = origin.to_str() else {
                     return false;
                 };
-                // Allow configured origin, localhost dev, and all Vercel preview deployments
+                // Allow configured origin, localhost dev, and all preview deployments
                 origin_str == frontend_origin
                     || origin_str == "http://localhost:3000"
                     || origin_str.ends_with(".vercel.app")
+                    || origin_str.ends_with(".fluxhub.dev")
             },
         ))
         .allow_methods([
