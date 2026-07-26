@@ -1,4 +1,4 @@
-const API_BASE = process.env.NEXT_PUBLIC_BACKEND_URL || "https://json-node-viz.onrender.com";
+const API_BASE = process.env.NEXT_PUBLIC_BACKEND_URL || "https://json-viz-api.fluxhub.dev";
 
 export interface TrackPayload {
   event_type: string;
